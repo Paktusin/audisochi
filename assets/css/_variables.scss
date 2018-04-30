@@ -12,16 +12,16 @@
 
 $primary: #c03;
 $secondary: #000;
-$font-family-base: Verdana, Arial, sans-serif;
-$headings-font-family: 'AudiType';
+$font-family-secondary: Verdana, Arial, sans-serif;
+$font-family-base: 'AudiType';
 
 $navbar-light-color: $secondary;
 $navbar-light-hover-color: $primary;
-
+$border-radius: 0px;
 $border-color: #d5d9d8;
 
-.font-a {
-  font-family: $headings-font-family;
+.font-secondary {
+  font-family: $font-family-secondary;
 }
 
 html {

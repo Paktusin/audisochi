@@ -10,8 +10,11 @@
 </head>
 <body>
 {% include 'navbar.html.twig' %}
+{% if banner is defined %}
+    {% include 'banner.html.twig' %}
+{% endif %}
 {% block body %}
-    <div class="container">
+    <div class="container main-container py-4">
         {% block container %}
         {% endblock %}
     </div>
