@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title | default('Страница') }} - Оригинальные запчасти Сочи</title>
+    <script src="{{ asset('build/js/app.js') }}" defer></script>
+    <link href="{{ asset('build/css/app.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+    {% include 'favicon.html.twig' %}
+</head>
+<body>
+{% include 'navbar.html.twig' %}
+{% block body %}
+    <div class="container">
+        {% block container %}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
 </html>

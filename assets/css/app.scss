@@ -1,0 +1,32 @@
+@import "variables";
+@import '~bootstrap/scss/bootstrap';
+
+$navlink-space: 30px;
+
+.navbar-brand {
+  font-size: 1rem;
+}
+
+textarea, input, button {
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+#mainNav {
+  .navbar-toggler {
+    color: $secondary;
+  }
+  .navbar-nav {
+    margin-left: -$navlink-space;
+    .nav-link {
+      margin-left: $navlink-space;
+      padding-left: 0;
+    }
+  }
+}
+
+hr{
+  border-color: $border-color;
+}
