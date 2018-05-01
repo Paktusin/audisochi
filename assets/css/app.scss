@@ -1,7 +1,6 @@
 @import "variables";
 @import '~bootstrap/scss/bootstrap';
 
-
 $navlink-space: 30px;
 .navbar-brand {
   font-size: 1rem;
@@ -42,7 +41,7 @@ div.main-container {
 }
 
 .container.banner {
-  max-width: 1400px!important;
+  max-width: 1400px !important;
   .banner-bg {
     overflow: hidden;
     background-color: $gray-300;
@@ -50,25 +49,34 @@ div.main-container {
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 30%;
-    .banner-body{
+    .banner-body {
+      z-index: 1;
       position: absolute;
       top: 0;
+      h2 {
+        width: fit-content;
+        width: -moz-fit-content;
+      }
     }
   }
 
 }
 
-.a-header{
+.a-header {
   background-color: white;
-  padding:.3rem .6rem;
+  padding: .3rem .6rem;
 }
 
-.arrow:after{
-  background-image:url("../svg/arrow.svg");
+.arrow:after {
+  background-image: url("../svg/arrow.svg");
   background-repeat: no-repeat;
   content: '\A0';
   padding-left: 2rem;
   background-position: right;
   background-size: 2rem;
   background-color: transparent;
+}
+
+.a-card {
+
 }

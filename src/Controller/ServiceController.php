@@ -18,7 +18,7 @@ class ServiceController extends Controller
         return $this->render('service/index.html.twig',[
             'banner'=>[
                 'image'=>'https://imgur.com/nXi0gDs.jpg',
-                'body'=>""
+                'body'=>'<h2 class="arrow a-header">Диагностика</h2><h2 class="arrow a-header">Сервисное обслуживание</h2>'
             ]
         ]);
     }

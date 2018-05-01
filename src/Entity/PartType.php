@@ -21,8 +21,6 @@ class PartType
      */
     private $name;
 
-    private $parent;
-
     public function getId()
     {
         return $this->id;
@@ -39,4 +37,10 @@ class PartType
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
 }

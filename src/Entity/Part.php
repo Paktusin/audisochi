@@ -41,6 +41,11 @@ class Part
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PartType")
+     */
+    private $type;
+
     public function getId()
     {
         return $this->id;
@@ -105,4 +110,27 @@ class Part
 
         return $this;
     }
+
+    /**
+     * @return PartType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param PartType $type
+     */
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
+
 }

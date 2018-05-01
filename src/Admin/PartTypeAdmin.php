@@ -14,44 +14,26 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PartAdmin extends Admin
+class PartTypeAdmin extends Admin
 {
-    protected $imgUr_fields = ['image'];
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name')
-            ->add('type')
-            ->add('description')
-            ->add('cnt')
-            ->add('price')
-            ->add('image', ImgurType::class, [
-                'data_class'=>null
-            ]);
+            ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('name')
-            ->add('type')
-            ->add('cnt')
-            ->add('price')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
-            ->add('type')
-            ->add('cnt')
-            ->add('price')
-            ->add('image',null,[
-                'template'=>'image_field.html.twig'
-            ])
+            ->addIdentifier('name')
         ;
         parent::configureListFields($listMapper);
     }

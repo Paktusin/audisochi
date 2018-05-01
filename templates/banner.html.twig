@@ -2,6 +2,11 @@
     <div class="row">
         <div class="col-12 p-0">
             <div class="banner-bg position-relative" style="background-image: url({{ banner.image }})">
+                {% if banner.video is defined %}
+                    <video class="banner-body" width="100%" style="top:-50%" loop autoplay muted>
+                        <source src="{{ banner.video }}" type="video/mp4">
+                    </video>
+                {% endif %}
                 <div class="py-4 px-5 banner-body">
                     {% if banner.body is defined %}
                         {{ banner.body | raw }}

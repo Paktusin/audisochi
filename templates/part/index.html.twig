@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div class="row">
+        {% for part in parts %}
+            <div class="col-12 col-md-6 col-lg-4 a-card">
+                <img class="img-fluid" src="{{ part.image.link }}">
+                <h6 class="a-header px-0 arrow">{{ part.name }}</h6>
+                <p>{{ part.description }}</p>
+                <p>{{ part.price }} руб.</p>
+                <a class="btn btn-secondary text-white">Заказать</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
