@@ -37,7 +37,7 @@ class Part
     private $price;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private $image;
 
@@ -94,12 +94,12 @@ class Part
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?array
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?array $image): self
     {
         $this->image = $image;
 

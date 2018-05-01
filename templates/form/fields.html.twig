@@ -1,0 +1,13 @@
+{% block imgur_widget %}
+    {% spaceless %}
+        {#{{ dump(form) }}#}
+        {% if form.vars.value | length > 0 %}
+            {% set imgur = form.vars.value | json_decode() %}
+            <a target="_blank" href="{{ imgur.link }}">
+                <img style="max-height: 50px;" src="{{ imgur.link }}">
+            </a>
+        {% endif %}
+        {{ block('form_widget') }}
+        <input type="file" name="{{ form.vars.name }}_file">
+    {% endspaceless %}
+{% endblock %}

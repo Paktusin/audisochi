@@ -1,0 +1,7 @@
+services:
+    sonata.admin.parts:
+        class: App\Admin\PartAdmin
+        arguments: [~, App\Entity\Part, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Parts }
+        public: true
