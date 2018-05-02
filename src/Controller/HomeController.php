@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return $this->render('home/index.html.twig', []);
+        return $this->redirectToRoute('part_index');
+        //return $this->render('home/index.html.twig', []);
     }
 }

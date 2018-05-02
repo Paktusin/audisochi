@@ -24,7 +24,7 @@ class TicketServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name',null,['label'=>'fio'])
             ->add('phone', TextType::class, [
                 'attr' => [
                     'class' => 'phone'
@@ -39,8 +39,12 @@ class TicketServiceType extends AbstractType
             ->add('model')
             ->add('year')
             ->add('miles')
-            ->add('reg_number')
-            ->add('comment')
+            ->add('reg_number',TextType::class,[
+                'attr'=>[
+                    'class'=>'reg_number'
+                ]
+            ])
+            ->add('comment',null,['label'=>'сomment service'])
         ;
     }
 
