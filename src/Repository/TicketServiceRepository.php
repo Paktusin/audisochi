@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Ticket;
+use App\Entity\TicketService;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Ticket|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ticket|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ticket[]    findAll()
- * @method Ticket[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TicketService|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TicketService|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TicketService[]    findAll()
+ * @method TicketService[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TicketRepository extends ServiceEntityRepository
+class TicketServiceRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Ticket::class);
+        parent::__construct($registry, TicketService::class);
     }
 
 //    /**

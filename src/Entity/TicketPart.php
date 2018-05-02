@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TicketPartRepository")
  */
-class Ticket
+class TicketPart
 {
     /**
      * @ORM\Id()
@@ -19,7 +20,7 @@ class Ticket
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $brand;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -27,9 +28,9 @@ class Ticket
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity="App\Entity\Order",mappedBy="ticket")
      */
-    private $name;
+    private $orders;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -37,23 +38,27 @@ class Ticket
     private $comment;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * TicketPart constructor.
      */
-    private $type;
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getBrand(): ?string
+    public function getName(): ?string
     {
-        return $this->brand;
+        return $this->name;
     }
 
-    public function setBrand(string $brand): self
+    public function setName(string $name): self
     {
-        $this->brand = $brand;
+        $this->name = $name;
 
         return $this;
     }
@@ -70,18 +75,6 @@ class Ticket
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getComment(): ?string
     {
         return $this->comment;
@@ -94,15 +87,19 @@ class Ticket
         return $this;
     }
 
-    public function getType(): ?string
+    /**
+     * @return mixed
+     */
+    public function getOrders()
     {
-        return $this->type;
+        return $this->orders;
     }
 
-    public function setType(string $type): self
+    /**
+     * @param mixed $orders
+     */
+    public function setOrders($orders): void
     {
-        $this->type = $type;
-
-        return $this;
+        $this->orders = $orders;
     }
 }

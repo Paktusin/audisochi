@@ -56,6 +56,13 @@ div.main-container {
       h2 {
         width: fit-content;
         width: -moz-fit-content;
+        a {
+          color: $secondary;
+          &:hover {
+            text-decoration: none;
+            color: $secondary;
+          }
+        }
       }
     }
   }
