@@ -30,7 +30,7 @@ class TicketPartType extends AbstractType
                     'class' => 'phone'
                 ]
             ])
-            ->add('comment',null,['label'=>'сomment service'])
+            ->add('comment')
         ;
     }
 

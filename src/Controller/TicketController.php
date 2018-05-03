@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TicketService;
 use App\Form\TicketPartType;
 use App\Form\TicketServiceType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,8 +23,13 @@ class TicketController extends Controller
         $ticket = new TicketService();
         $formBuilder = $this->createForm(TicketPartType::class, $ticket);
         $formBuilder->handleRequest($request);
-        if($formBuilder->isSubmitted() && $formBuilder->isValid()){
+        if ($formBuilder->isSubmitted() && $formBuilder->isValid()) {
             $parts = $request->request->get('parts');
+            if ($parts) {
+                return $this->done($ticket->getName(), $ticket->getPhone());
+            } else {
+                $formBuilder->addError(new FormError('Вы ничего не вырбрали для заказа'));
+            }
         }
         return $this->render('ticket/part.html.twig', [
             'title' => 'Сделать заказ',
@@ -38,14 +44,21 @@ class TicketController extends Controller
     {
         $ticket = new TicketService();
         $formBuilder = $this->createForm(TicketServiceType::class, $ticket);
+        $formBuilder->handleRequest($request);
+        if ($formBuilder->isSubmitted() && $formBuilder->isValid()) {
+            return $this->done($ticket->getName(), $ticket->getPhone());
+        }
         return $this->render('ticket/service.html.twig', [
             'title' => 'Запись на сервис',
             'form' => $formBuilder->createView()
         ]);
     }
 
-    private function done()
+    private function done($name, $phone)
     {
-
+        return $this->render('/ticket/done.html.twig', [
+            'name' => $name,
+            'phone' => $phone
+        ]);
     }
 }

@@ -1,14 +1,19 @@
 {% if parts | length >0 %}
     <ul class="list-group">
+        {% set summ = 0 %}
         {% for part in parts %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ part.name }} - {{ counts[part.id] }} шт.
+                {{ part.name }} - {{ counts[part.id] }} шт. {{ part.price * counts[part.id] }} руб.
+                {% set summ = summ + part.price * counts[part.id] %}
                 <button type="button" onclick="removePart(id,this)" class="btn badge badge-secondary badge-pill">Х
                 </button>
             </li>
             <input type="hidden" name="parts[][{{ part.id }}][id]" value="{{ part.id }}"/>
             <input type="hidden" name="parts[][{{ part.id }}][cnt]" value="{{ counts[part.id] }}"/>
         {% endfor %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Итого: {{ summ }} руб.
+        </li>
     </ul>
 {% else %}
     <span class="list-group-item">Список товаров пуст</span>

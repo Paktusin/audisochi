@@ -2,17 +2,16 @@ export class Basket {
     constructor(id) {
         this.el = $(id);
         this.orders = [];
-        this.car = {};
-        this.client = {};
+        this.part = {};
+        this.service = {};
         this.load();
         this.renderContent();
     }
 
     load() {
-        this.car = $.cookie('car') ? JSON.parse($.cookie('car')) : this.car;
-        this.client = $.cookie('client') ? JSON.parse($.cookie('client')) : this.client;
+        this.service = $.cookie('service') ? JSON.parse($.cookie('service')) : this.service;
+        this.part = $.cookie('part') ? JSON.parse($.cookie('part')) : this.part;
         this.orders = $.cookie('orders') ? JSON.parse($.cookie('orders')) : this.orders;
-        this._log();
         this.updateBadge();
     }
 
@@ -27,8 +26,8 @@ export class Basket {
     }
 
     save() {
-        $.cookie('car', JSON.stringify(this.car), {path: '/'});
-        $.cookie('client', JSON.stringify(this.client), {path: '/'});
+        $.cookie('part', JSON.stringify(this.part), {path: '/'});
+        $.cookie('service', JSON.stringify(this.service), {path: '/'});
         $.cookie('orders', JSON.stringify(this.orders), {path: '/'});
         this.updateBadge();
         this.renderContent();
@@ -39,10 +38,6 @@ export class Basket {
         this.save();
     }
 
-    _log() {
-        console.log(this.car, this.client, this.orders);
-    }
-
     renderContent() {
         let el = $('#orderList');
         if (el.length > 0) {
@@ -50,5 +45,23 @@ export class Basket {
                 el.html(data);
             });
         }
+    }
+
+    updatePart(part) {
+        this.part = part;
+        this.save();
+    }
+
+    updateService(service) {
+        this.service = service;
+        this.save();
+    }
+
+    getPart() {
+        return this.part
+    }
+
+    getService() {
+        return this.service
     }
 }
