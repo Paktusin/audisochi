@@ -2,19 +2,17 @@
 
 {% block container %}
     <div class="row">
-        {% for part in parts %}
+        {% for type in types %}
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="a-card">
-                    <div class="bg" style="background-image: url({{ part.image.link }})">
+                <a href="{{ path('part_catalog',{type:type.id}) }}">
+                    <div class="a-card">
+                        <div class="bg" style="background-image: url({{ type.image.link }})">
+                        </div>
+                        <div class="a-body p-4">
+                            <h6 class="a-header arrow">{{ type.name }}</h6>
+                        </div>
                     </div>
-                    <div class="a-body p-4">
-                        <h6 class="a-header arrow">{{ part.name }}</h6>
-                    </div>
-                </div>
-                <p>{{ part.price }} руб.</p>
-                <button class="btn btn-secondary text-white" onclick="addToBasket({{ part.id }},this)">Доавить в
-                    корзину
-                </button>
+                </a>
             </div>
         {% endfor %}
     </div>

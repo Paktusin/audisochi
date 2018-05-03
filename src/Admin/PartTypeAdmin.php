@@ -16,10 +16,14 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class PartTypeAdmin extends Admin
 {
+
+    protected $imgUr_fields = ['image'];
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name')
+            ->add('image', ImgurType::class)
             ;
     }
 
@@ -34,6 +38,9 @@ class PartTypeAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
+            ->add('image',null,[
+                'template'=>'image_field.html.twig'
+            ])
         ;
         parent::configureListFields($listMapper);
     }

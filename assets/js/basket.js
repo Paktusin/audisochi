@@ -22,7 +22,24 @@ export class Basket {
     addPart(id, el) {
         this.orders.push(id);
         this.save();
-        let flyel = $(el).parent();
+        let flyel = $(el).parent().clone();
+        $('body').append(flyel);
+        flyel.css({
+            position: 'absolute',
+            height: flyel.innerHeight(),
+            width: flyel.innerWidth(),
+            top: $(el).parent().offset().top,
+            left: $(el).parent().offset().left
+        });
+        flyel.animate({
+            top: this.el.offset().top,
+            left: this.el.offset().left,
+            height:0,
+            width:0,
+            opacity: .5
+        }, 1000, 'swing', () => {
+            flyel.remove();
+        });
     }
 
     save() {

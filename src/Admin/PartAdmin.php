@@ -26,9 +26,7 @@ class PartAdmin extends Admin
             ->add('description')
             ->add('cnt')
             ->add('price')
-            ->add('image', ImgurType::class, [
-                'data_class'=>null
-            ]);
+            ->add('image', ImgurType::class);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

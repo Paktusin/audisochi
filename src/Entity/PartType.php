@@ -21,6 +21,11 @@ class PartType
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $image;
+
     public function getId()
     {
         return $this->id;
@@ -41,6 +46,22 @@ class PartType
     public function __toString()
     {
         return (string)$this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\PartService;
+use App\Service\PartTypeService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class PartController extends Controller
     public function index(Request $request)
     {
         return $this->render('part/index.html.twig', [
-            'parts' => $this->get(PartService::class)->repo()->findAll(),
+            'types' => $this->get(PartTypeService::class)->repo()->findAll(),
             'title' => 'Запасные части',
             'banner' => [
                 'image' => 'https://i.imgur.com/a4kt8MT.jpg',
@@ -31,6 +32,17 @@ class PartController extends Controller
                 ',
                 'video' => 'https://www.audi.de/content/dam/nemo/customer-area/servicing-your-audi/audi-genuine-parts/video/new-ci/1920x1080_audi_agp_perfect_fit_2010_new_ending_42sec_ger.mp4'
             ]
+        ]);
+    }
+
+    /**
+     * @Route("/catalog",name="part_catalog")
+     */
+    public function catalog(Request $request)
+    {
+        return $this->render('part/catalog.html.twig', [
+            'parts' => $this->get(PartService::class)->repo()->findBy(['type'=>$request->query->get('type')]),
+            'title' => 'Каталог'
         ]);
     }
 

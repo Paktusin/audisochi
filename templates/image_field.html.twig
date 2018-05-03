@@ -1,6 +1,8 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 {% block field %}
+    {% if value.link is defined %}
     <a href="{{ value.link }}" target="_blank">
         <img src="{{ value.link }}" style="height: 50px">
     </a>
+    {% endif %}
 {% endblock %}
