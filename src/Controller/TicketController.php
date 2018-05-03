@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\TicketService;
+use App\Form\TicketPartType;
 use App\Form\TicketServiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,8 +19,15 @@ class TicketController extends Controller
      */
     public function part(Request $request)
     {
-        return $this->render('ticket/index.html.twig', [
-            'title' => 'Сделать заказ'
+        $ticket = new TicketService();
+        $formBuilder = $this->createForm(TicketPartType::class, $ticket);
+        $formBuilder->handleRequest($request);
+        if($formBuilder->isSubmitted() && $formBuilder->isValid()){
+            $parts = $request->request->get('parts');
+        }
+        return $this->render('ticket/part.html.twig', [
+            'title' => 'Сделать заказ',
+            'form' => $formBuilder->createView()
         ]);
     }
 

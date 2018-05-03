@@ -4,13 +4,17 @@
     <div class="row">
         {% for part in parts %}
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="a-card"  style="background-image: url({{ part.image.link }})">
+                <div class="a-card">
+                    <div class="bg" style="background-image: url({{ part.image.link }})">
+                    </div>
                     <div class="a-body p-4">
                         <h6 class="a-header px-0 arrow">{{ part.name }}</h6>
                     </div>
                 </div>
                 <p>{{ part.price }} руб.</p>
-                <a class="btn btn-secondary text-white">Заказать</a>
+                <button class="btn btn-secondary text-white" onclick="addToBasket({{ part.id }},this)">Доавить в
+                    корзину
+                </button>
             </div>
         {% endfor %}
     </div>

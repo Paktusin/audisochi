@@ -25,8 +25,9 @@ class Service
     {
         $this->container = $container;
         $this->em = $this->container->get('doctrine')->getManager();
-        if ($this->class)
+        if ($this->class) {
             $this->repo = $this->container->get('doctrine')->getRepository($this->class);
+        }
     }
 
     public function repo()

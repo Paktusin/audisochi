@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 d-flex py-4">
             <a class="navbar-brand font-a mr-auto p-0 text-secondary" href="{{ path('index') }}">Ауди Сочи</a>
-            <img class="pull-right" src="{{asset('img/logo.png')}}"/>
+            <img class="pull-right" src="{{ asset('img/logo.png') }}"/>
         </div>
     </div>
     <div class="row d-none d-md-block">
@@ -29,7 +29,7 @@
                     <a class="nav-link" href="{{ path('service') }}">Сервис</a>
                 </li>
                 {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="/">Новости</a>#}
+                {#<a class="nav-link" href="/">Новости</a>#}
                 {#</li>#}
             </ul>
             <ul class="navbar-nav">
@@ -38,6 +38,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('part_ticket') }}">Корзина <span class="badge badge-secondary badge-pill" id="basket"></span></a>
                 </li>
             </ul>
         </div>
