@@ -6,7 +6,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="{{ path('part_catalog',{type:type.id}) }}">
                     <div class="a-card">
-                        <div class="bg" style="background-image: url({{ type.image.link }})">
+                        <div class="bg" style="background-image: url({{ type.image | image }})">
                         </div>
                         <div class="a-body p-4">
                             <h6 class="a-header arrow">{{ type.name }}</h6>

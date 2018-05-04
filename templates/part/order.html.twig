@@ -5,8 +5,9 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ part.name }} - {{ counts[part.id] }} шт. {{ part.price * counts[part.id] }} руб.
                 {% set summ = summ + part.price * counts[part.id] %}
-                <button type="button" onclick="removePart(id,this)" class="btn badge badge-secondary badge-pill">Х
-                </button>
+                <button title="Добавить" type="button" onclick="basket.addPart({{ part.id }})" class="btn badge badge-secondary badge-pill">+</button>
+                <button title="Удалить" type="button" onclick="basket.removePart({{ part.id }})" class="btn badge badge-secondary badge-pill">-</button>
+                <button title="Удалить все" type="button" onclick="basket.clearPart({{ part.id }})" class="btn badge badge-secondary badge-pill">Х</button>
             </li>
             <input type="hidden" name="parts[][{{ part.id }}][id]" value="{{ part.id }}"/>
             <input type="hidden" name="parts[][{{ part.id }}][cnt]" value="{{ counts[part.id] }}"/>

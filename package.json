@@ -15,6 +15,7 @@
     "dependencies": {
         "bootstrap": "^4.1.1",
         "jquery": "^3.3.1",
+        "jquery.animate": "^1.8.9",
         "jquery.cookie": "^1.4.1",
         "jquery.maskedinput": "^1.4.1",
         "popper.js": "^1.14.3"

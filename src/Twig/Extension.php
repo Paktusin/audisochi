@@ -31,11 +31,20 @@ class Extension extends Twig_Extension
     {
         return [
             new TwigFilter('json_decode', [$this, 'jsonDecode']),
+            new TwigFilter('image', [$this, 'image']),
         ];
     }
 
     public function jsonDecode($str)
     {
         return json_decode($str, true);
+    }
+
+    public function image($arr)
+    {
+        if ($arr && isset($arr['link'])) {
+            return $arr['link'];
+        }
+        return null;
     }
 }

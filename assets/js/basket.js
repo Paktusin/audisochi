@@ -22,24 +22,29 @@ export class Basket {
     addPart(id, el) {
         this.orders.push(id);
         this.save();
-        let flyel = $(el).parent().clone();
-        $('body').append(flyel);
-        flyel.css({
-            position: 'absolute',
-            height: flyel.innerHeight(),
-            width: flyel.innerWidth(),
-            top: $(el).parent().offset().top,
-            left: $(el).parent().offset().left
-        });
-        flyel.animate({
-            top: this.el.offset().top,
-            left: this.el.offset().left,
-            height:0,
-            width:0,
-            opacity: .5
-        }, 1000, 'swing', () => {
-            flyel.remove();
-        });
+        if (el) {
+            let card = $(el).parent().find('.a-card');
+            let flyel = card.clone();
+            console.log(card.innerWidth(), card.innerHeight());
+            flyel.css({
+                position: 'absolute',
+                height: card.innerHeight(),
+                width: card.innerWidth(),
+                top: card.offset().top,
+                left: card.offset().left,
+                padding: 0,
+                transformOrigin: 'top left'
+            });
+            $('body').append(flyel);
+            flyel.animate({
+                scale: 0,
+                top: this.el.offset().top,
+                left: this.el.offset().left,
+                opacity: .5
+            }, 500, 'swing', () => {
+                flyel.remove();
+            });
+        }
     }
 
     save() {
@@ -50,8 +55,18 @@ export class Basket {
         this.renderContent();
     }
 
-    removePart(id, el) {
+    removePart(id) {
         this.orders.splice(this.orders.indexOf(id), 1);
+        this.save();
+    }
+
+    clearAll() {
+        this.orders = [];
+        this.save();
+    }
+
+    clearPart(id) {
+        this.orders = this.orders.filter(el => el !== id);
         this.save();
     }
 
