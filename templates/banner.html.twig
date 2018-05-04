@@ -3,7 +3,7 @@
         <div class="col-12 p-0">
             <div class="banner-bg position-relative" style="background-image: url({{ banner.image }})">
                 {% if banner.video is defined %}
-                    <video class="banner-body" width="100%" style="top:-50%" loop autoplay muted>
+                    <video class="banner-body" width="100%" loop autoplay muted>
                         <source src="{{ banner.video }}" type="video/mp4">
                     </video>
                 {% endif %}

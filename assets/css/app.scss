@@ -52,12 +52,18 @@ div.main-container {
 .container.banner {
   max-width: 1400px !important;
   .banner-bg {
+    @media (min-width: 768px) {
+      padding-top: 30%;
+      video.banner-body {
+        top: -50% !important;
+      }
+    }
     overflow: hidden;
     background-color: $gray-300;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 30%;
+    padding-top: 50%;
     .banner-body {
       z-index: 1;
       position: absolute;
