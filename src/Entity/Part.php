@@ -46,6 +46,11 @@ class Part
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Car")
+     */
+    private $car;
+
     public function getId()
     {
         return $this->id;
@@ -130,6 +135,22 @@ class Part
     public function __toString()
     {
         return (string)$this->name;
+    }
+
+    /**
+     * @return Car
+     */
+    public function getCar()
+    {
+        return $this->car;
+    }
+
+    /**
+     * @param Car $car
+     */
+    public function setCar($car): void
+    {
+        $this->car = $car;
     }
 
 

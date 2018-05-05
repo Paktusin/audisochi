@@ -146,6 +146,9 @@
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
     },
+    "simple-html-dom/simple-html-dom": {
+        "version": "1.5.0"
+    },
     "sonata-project/admin-bundle": {
         "version": "3.31",
         "recipe": {
@@ -178,6 +181,9 @@
     },
     "sonata-project/exporter": {
         "version": "1.8.0"
+    },
+    "sunra/php-simple-html-dom-parser": {
+        "version": "v1.5.2"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"

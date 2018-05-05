@@ -14,4 +14,16 @@ use App\Service;
 class PartTypeService extends Service
 {
     protected $class = PartType::class;
+
+    public function findOrCreate($name)
+    {
+        $type = $this->repo->findOneBy(['name' => $name]);
+        if (!$type) {
+            $type = new PartType();
+            $type->setName($name);
+            $this->em->persist($type);
+            $this->em->flush();
+        }
+        return $type;
+    }
 }
