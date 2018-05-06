@@ -18,12 +18,12 @@ class HomeController extends Controller
         //return $this->render('home/index.html.twig', []);
     }
 
-    /**
-     * @Route("/test")
-     */
-    public function test()
-    {
-        $this->get(ParseService::class)->parseAudi();
-        return $this->json([]);
-    }
+//    /**
+//     * @Route("/test")
+//     */
+//    public function test()
+//    {
+//        $this->get(ParseService::class)->parseAudi();
+//        return $this->json([]);
+//    }
 }
