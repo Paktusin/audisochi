@@ -10,6 +10,7 @@ namespace App\Service;
 
 use App\Entity\Car;
 use App\Service;
+use Doctrine\ORM\QueryBuilder;
 
 class CarService extends Service
 {
@@ -26,5 +27,21 @@ class CarService extends Service
             $this->em->flush();
         }
         return $car;
+    }
+
+    /**
+     * @return Car[]
+     */
+    public function forMenu()
+    {
+        /** @var QueryBuilder $q */
+        $q = $this->repo->createQueryBuilder('c');
+        return $q
+            ->innerJoin('c.parts', 'p')
+            ->innerJoin('p.type', 't')
+            ->andWhere('p.isActive = true')
+            ->getQuery()
+            ->getResult();
+
     }
 }

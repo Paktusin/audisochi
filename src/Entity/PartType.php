@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +26,17 @@ class PartType
      * @ORM\Column(type="array", nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Part",mappedBy="type")
+     */
+    private $parts;
+
+    public function __construct()
+    {
+        $this->parts = new ArrayCollection();
+    }
+
 
     public function getId()
     {

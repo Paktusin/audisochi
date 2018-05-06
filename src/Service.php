@@ -9,6 +9,7 @@
 namespace App;
 
 
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Service
@@ -16,6 +17,8 @@ class Service
     protected $class;
     protected $repo;
     protected $em;
+    /** @var QueryBuilder $q */
+    protected $q;
     protected $container;
 
     /**
@@ -27,6 +30,7 @@ class Service
         $this->em = $this->container->get('doctrine')->getManager();
         if ($this->class) {
             $this->repo = $this->container->get('doctrine')->getRepository($this->class);
+            $this->q = $this->repo->createQueryBuilder('e');
         }
     }
 

@@ -27,12 +27,7 @@ class Part
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $cnt;
-
-    /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      */
     private $price;
 
@@ -41,15 +36,31 @@ class Part
      */
     private $image;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PartType")
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PartType",inversedBy="parts")
      */
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Car")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Car",inversedBy="parts")
      */
     private $car;
+
+    /**
+     * Part constructor.
+     */
+    public function __construct()
+    {
+        $this->setIsActive(false);
+    }
+
 
     public function getId()
     {
@@ -76,18 +87,6 @@ class Part
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCnt(): ?int
-    {
-        return $this->cnt;
-    }
-
-    public function setCnt(int $cnt): self
-    {
-        $this->cnt = $cnt;
 
         return $this;
     }
@@ -153,5 +152,20 @@ class Part
         $this->car = $car;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive): void
+    {
+        $this->isActive = $isActive;
+    }
 
 }

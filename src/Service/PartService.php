@@ -8,10 +8,13 @@
 
 namespace App\Service;
 
+use App\Entity\Car;
 use App\Entity\Part;
+use App\Entity\PartType;
 use App\Service;
 
 class PartService extends Service
 {
     protected $class = Part::class;
+
 }

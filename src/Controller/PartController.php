@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Car;
+use App\Entity\PartType;
+use App\Service\CarService;
 use App\Service\PartService;
 use App\Service\PartTypeService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -16,12 +19,12 @@ class PartController extends Controller
 {
 
     /**
-     * @Route("/",name="part_index")
+     * @Route("/cars",name="part_index")
      */
     public function index(Request $request)
     {
         return $this->render('part/index.html.twig', [
-            'types' => $this->get(PartTypeService::class)->repo()->findAll(),
+            'cars' => $this->get(CarService::class)->forMenu(),
             'title' => 'Запасные части',
             'banner' => [
                 'image' => 'https://i.imgur.com/a4kt8MT.jpg',
@@ -36,13 +39,35 @@ class PartController extends Controller
     }
 
     /**
-     * @Route("/catalog",name="part_catalog")
+     * @Route("/types",name="part_types")
      */
-    public function catalog(Request $request)
+    public function types(Request $request)
     {
-        return $this->render('part/catalog.html.twig', [
-            'parts' => $this->get(PartService::class)->repo()->findBy(['type'=>$request->query->get('type')]),
-            'title' => 'Каталог'
+        /** @var Car $car */
+        $car = $this->get(CarService::class)->repo()->find($request->query->getInt('car_id'));
+        return $this->render('part/types.html.twig', [
+            'types' => $this->get(PartTypeService::class)->getMenu($car),
+            'title' => 'Каталог',
+            'car'=>$car
+        ]);
+    }
+
+    /**
+     * @Route("/",name="parts")
+     */
+    public function parts(Request $request)
+    {
+        /** @var Car $car */
+        $car = $this->get(CarService::class)->repo()->find($request->query->getInt('car_id'));
+        $type = $this->get(PartTypeService::class)->repo()->find($request->query->getInt('type_id'));
+        return $this->render('part/parts.html.twig', [
+            'parts' => $this->get(PartService::class)->repo()->findBy([
+                'type'=>$type,
+                'car'=>$car,
+                'isActive'=>true,
+            ]),
+            'title' => 'Каталог',
+            'car'=>$car
         ]);
     }
 

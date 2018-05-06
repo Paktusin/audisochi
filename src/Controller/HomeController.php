@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function test()
     {
-        $this->get(ParseService::class)->parseParts();
+        $this->get(ParseService::class)->parseAudi();
         return $this->json([]);
     }
 }

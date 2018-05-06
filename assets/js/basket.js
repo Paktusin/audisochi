@@ -23,6 +23,11 @@ export class Basket {
         this.orders.push(id);
         this.save();
         if (el) {
+            let modal = $('#modal');
+            modal.modal('show');
+            modal.find('.modal-body').html($(el).parent().find('.part-name').text() + ' добавлена в корзину');
+        }
+        /*if (el) {
             let card = $(el).parent().find('.a-card');
             let flyel = card.clone();
             console.log(card.innerWidth(), card.innerHeight());
@@ -44,7 +49,7 @@ export class Basket {
             }, 500, 'swing', () => {
                 flyel.remove();
             });
-        }
+        }*/
     }
 
     save() {
