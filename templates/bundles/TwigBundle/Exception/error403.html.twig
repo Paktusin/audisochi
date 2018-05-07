@@ -1,0 +1,8 @@
+{% extends '/bundles/TwigBundle/Exception/_error.html.twig' %}
+
+
+{% block error_content %}
+    <h2 class="w-100 text-center">Ошибка 403</h2>
+    <h4 class="text-center">Доступ к странице закрыт</h4>
+    <h4 class="text-center">{{ status_text }}</h4>
+{% endblock %}

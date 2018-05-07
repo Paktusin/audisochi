@@ -1,0 +1,18 @@
+{% if recaptcha_enable == 'true' %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+        document.getElementsByName('{{ name }}')[0].addEventListener("submit", (e) => {
+            e.preventDefault();
+            grecaptcha.execute();
+        });
+
+        function reSubmit(e) {
+            document.getElementsByName('{{ name }}')[0].submit();
+        }
+    </script>
+    <div class="g-recaptcha"
+         data-size="invisible"
+         data-sitekey="6Lcur1cUAAAAAIDyWxrkXFNTdiQCeTJMU12uVfDu"
+         data-callback="reSubmit">
+    </div>
+{% endif %}

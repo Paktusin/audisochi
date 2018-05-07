@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Car;
+use App\Entity\Part;
 use App\Entity\PartType;
 use App\Service\CarService;
 use App\Service\PartService;
@@ -48,7 +49,11 @@ class PartController extends Controller
         return $this->render('part/types.html.twig', [
             'types' => $this->get(PartTypeService::class)->getMenu($car),
             'title' => 'Каталог',
-            'car'=>$car
+            'car' => $car,
+            'bread' => [
+                ['url' => $this->get('router')->generate('part_index'), 'name' => 'Запчасти'],
+                ['name' => $car->getFullName()],
+            ]
         ]);
     }
 
@@ -59,15 +64,44 @@ class PartController extends Controller
     {
         /** @var Car $car */
         $car = $this->get(CarService::class)->repo()->find($request->query->getInt('car_id'));
+        if (!$car) return $this->createNotFoundException('Автомобиль не найден');
+        /** @var PartType $type */
         $type = $this->get(PartTypeService::class)->repo()->find($request->query->getInt('type_id'));
+        if (!$type) return $this->createNotFoundException('Категоря не найдена');
         return $this->render('part/parts.html.twig', [
             'parts' => $this->get(PartService::class)->repo()->findBy([
-                'type'=>$type,
-                'car'=>$car,
-                'isActive'=>true,
+                'type' => $type,
+                'car' => $car,
+                'isActive' => true,
             ]),
             'title' => 'Каталог',
-            'car'=>$car
+            'car' => $car,
+            'bread' => [
+                ['url' => $this->get('router')->generate('part_index'), 'name' => 'Запчасти'],
+                ['url' => $this->get('router')->generate('part_types', ['car_id' => $car->getId()]), 'name' => $car->getFullName()],
+                ['name' => $type->getName()],
+            ]
+        ]);
+    }
+
+
+    /**
+     * @Route("/show/{id}",name="part_show")
+     */
+    public function show(Request $request, $id)
+    {
+        /** @var Part $part */
+        $part = $this->get(PartService::class)->repo()->find($id);
+        if (!$part) return $this->createNotFoundException('Запчасть не найдена');
+        return $this->render('part/show.html.twig', [
+            'part' => $part,
+            'title' => $part->getName() . ' для ' . $part->getCar()->getFullName(),
+            'bread' => [
+                ['url' => $this->get('router')->generate('part_index'), 'name' => 'Запчасти'],
+                ['url' => $this->get('router')->generate('part_types', ['car_id' => $part->getCar()->getId()]), 'name' => $part->getCar()->getFullName()],
+                ['url' => $this->get('router')->generate('parts', ['type_id' => $part->getType()->getId(), 'car_id' => $part->getCar()->getId()]), 'name' => $part->getType()->getName()],
+                ['name' => $part->getName()]
+            ]
         ]);
     }
 
@@ -80,7 +114,7 @@ class PartController extends Controller
         $counts = [];
         $parts = [];
         $ids = $request->request->get('ids');
-        if($ids){
+        if ($ids) {
             foreach ($ids as $id) {
                 if (isset($counts[$id])) $counts[$id]++;
                 else $counts[$id] = 1;

@@ -14,8 +14,10 @@
 {% if banner is defined %}
     {% include 'banner.html.twig' %}
 {% endif %}
+{% include '_bread.html.twig' %}
 {% block body %}
     <div class="container main-container py-4">
+        {% include '_flash.html.twig' %}
         {% block container %}
         {% endblock %}
     </div>

@@ -11,7 +11,8 @@
             </div>
             <hr/>
             {{ form_widget(form) }}
-            <button class="btn btn-secondary">Оставить заявку</button>
+            {{ include('/_recaptcha.html.twig',{name:'ticket_part'}) }}
+            <button type="submit" class="btn btn-secondary">Оформить заказ</button>
             {{ form_end(form) }}
         </div>
     </div>

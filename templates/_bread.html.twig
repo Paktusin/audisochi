@@ -1,0 +1,21 @@
+{% if bread is defined %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ol class="breadcrumb">
+                    {% for breadcrumb in bread %}
+                        <li class="breadcrumb-item {% if loop.last %}active{% endif %}">
+                            {% if loop.last %}
+                                <span>{{ breadcrumb['name'] }}</span>
+                            {% else %}
+                                <a href="{{ breadcrumb['url'] }}">
+                                    <span>{{ breadcrumb['name'] }}</span>
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endif %}

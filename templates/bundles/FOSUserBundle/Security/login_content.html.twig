@@ -1,10 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
 
-<form class="form" action="{{ path("fos_user_security_check") }}" method="post">
+{{ include('_flash.html.twig') }}
+<form name="login_form" class="form" action="{{ path("fos_user_security_login") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
     {% endif %}
@@ -21,6 +19,7 @@
     </div>
     <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-    <input class="btn btn-secondary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"/>
+    {{ include('/_recaptcha.html.twig',{name:'login_form'}) }}
+    <input class="btn btn-secondary" type="submit" id="_submit" name="_submit"
+           value="{{ 'security.login.submit'|trans }}"/>
 </form>

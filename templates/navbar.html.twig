@@ -33,14 +33,22 @@
                 {#</li>#}
             </ul>
             <ul class="navbar-nav">
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="nav1">
+                            {{ app.user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="nav1">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="dropdown-item" href="{{ path('sonata_admin_dashboard') }}">Админка</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Выход</a>
+                        </div>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Поиск</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Контакты</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('part_ticket') }}">Корзина <span class="badge badge-secondary badge-pill" id="basket"></span></a>
+                    <a class="nav-link" href="{{ path('part_ticket') }}">Корзина <span
+                                class="badge badge-secondary badge-pill" id="basket"></span></a>
                 </li>
             </ul>
         </div>

@@ -37,7 +37,7 @@ class PartTypeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->add('name')
             ->add('image',null,[
                 'template'=>'image_field.html.twig'
             ])

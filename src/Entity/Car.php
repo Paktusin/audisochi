@@ -27,9 +27,9 @@ class Car
      */
     private $model;
 
-        /**
-         * @ORM\Column(type="array", nullable=true)
-         */
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
     private $image;
 
     /**
@@ -63,6 +63,11 @@ class Car
     public function getModel(): ?string
     {
         return $this->model;
+    }
+
+    public function getFullName()
+    {
+        return $this->getBrand() . ' ' . $this->getModel();
     }
 
     public function setModel(string $model): self

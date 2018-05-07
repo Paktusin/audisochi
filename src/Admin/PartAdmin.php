@@ -23,6 +23,7 @@ class PartAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('type')
+            ->add('isActive')
             ->add('description')
             ->add('price')
             ->add('image', ImgurType::class);
@@ -31,6 +32,7 @@ class PartAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('isActive')
             ->add('name')
             ->add('type')
             ->add('price')
@@ -41,6 +43,7 @@ class PartAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('isActive')
             ->add('name')
             ->add('type')
             ->add('price')

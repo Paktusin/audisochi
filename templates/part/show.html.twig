@@ -2,24 +2,16 @@
 
 {% block container %}
     <div class="row">
-        {% for part in parts %}
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
-                <a href="{{ path('part_show',{id:part.id}) }}">
-                    <div class="a-card">
-                        <div class="bg" style="background-image: url({{ part.image | image }})">
-                        </div>
-                        <div class="a-body p-4">
-                            <h6 class="a-header arrow part-name">{{ part.name }}</h6>
-                        </div>
-                    </div>
-                    <p>{{ part.price }} руб.</p>
-                </a>
-                <button class="btn btn-secondary text-white" onclick="basket.addPart({{ part.id }},this)">
-                    Добавить в
-                    корзину
-                </button>
-            </div>
-        {% endfor %}
+        <div class="col-12">
+            <h4 class="a-header arrow part-name">{{ part.name }}</h4>
+            <img class="img-fluid" src="{{ part.image | image }}">
+            <p>{{ part.description | raw }}</p>
+            <p>{{ part.price }} руб.</p>
+            <button class="btn btn-secondary text-white" onclick="basket.addPart({{ part.id }},this)">
+                Добавить в
+                корзину
+            </button>
+        </div>
     </div>
     <div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1">
         <div class="modal-dialog modal-sm">

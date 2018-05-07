@@ -39,8 +39,8 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('model')
             ->add('brand')
+            ->add('model')
             ->add('image',null,[
                 'template'=>'image_field.html.twig'
             ])
