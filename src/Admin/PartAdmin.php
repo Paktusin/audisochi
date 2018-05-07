@@ -24,7 +24,6 @@ class PartAdmin extends Admin
             ->add('name')
             ->add('type')
             ->add('description')
-            ->add('cnt')
             ->add('price')
             ->add('image', ImgurType::class);
     }
@@ -34,7 +33,6 @@ class PartAdmin extends Admin
         $datagridMapper
             ->add('name')
             ->add('type')
-            ->add('cnt')
             ->add('price')
         ;
     }
@@ -45,7 +43,6 @@ class PartAdmin extends Admin
             ->add('id')
             ->add('name')
             ->add('type')
-            ->add('cnt')
             ->add('price')
             ->add('image',null,[
                 'template'=>'image_field.html.twig'
