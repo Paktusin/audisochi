@@ -4,7 +4,7 @@
     <div class="row">
         {% for type in types %}
             <div class="col-12 col-sm-6 col-md-4 mb-4">
-                <a href="{{ path('parts',{car_id:car.id,type_id:type.id}) }}">
+                <a class="undec" href="{{ path('parts',{car_id:car.id,type_id:type.id}) }}">
                     <div class="a-card">
                         <div class="bg" style="background-image: url({{ type.image | image }})">
                         </div>

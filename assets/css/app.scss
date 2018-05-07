@@ -97,14 +97,11 @@ div.main-container {
   background-color: transparent;
 }
 
-a {
-  .a-card {
-    color: $secondary;
-  }
+a.undec {
+  color: black;
   &:hover {
-    .a-card {
-      color: $secondary;
-    }
+    color: black;
+    text-decoration: none;
   }
 }
 
