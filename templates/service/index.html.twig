@@ -6,7 +6,7 @@
         {% for service in services %}
             <div class="col-12 col-sm-6 col-md-4 mb-4" data-admin="servicecar" data-admin-id="{{ service.id }}">
                 <div class="a-card">
-                    <div class="bg" style="background-image: url({{ service.image }})"></div>
+                    <div class="bg" style="background-image: url({{ service.image | image }})"></div>
                     <div class="a-body p-4">
                         <h6 class="a-header arrow">{{ service.name }}</h6>
                     </div>
