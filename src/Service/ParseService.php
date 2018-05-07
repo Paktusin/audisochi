@@ -61,30 +61,32 @@ class ParseService extends Service
     private function parseParts($url, $type, $car)
     {
         $html = HtmlDomParser::str_get_html(file_get_contents($this->url . $url));
-        foreach ($html->find('.productslist .product .goods-list-title a') as $html_a) {
-            $name = $html_a->innertext();
-            $part = $this->container->get('doctrine')->getRepository(Part::class)
-                ->findOneBy(['name' => $name, 'type' => $type, 'car' => $car]);
-            if (!$part) {
-                $html_part = HtmlDomParser::str_get_html(file_get_contents($this->url . $html_a->href));
-                if ($html_part) {
-                    $part = new Part();
-                    $part->setName($name);
-                    $part->setCar($car);
-                    $part->setType($type);
-                    $html_price_arr = $html_part->find('.product-price');
-                    if (!empty($html_price_arr)) {
-                        $price = $html_price_arr[0]->innertext();
+        if ($html) {
+            foreach ($html->find('.productslist .product .goods-list-title a') as $html_a) {
+                $name = $html_a->innertext();
+                $part = $this->container->get('doctrine')->getRepository(Part::class)
+                    ->findOneBy(['name' => $name, 'type' => $type, 'car' => $car]);
+                if (!$part) {
+                    $html_part = HtmlDomParser::str_get_html(file_get_contents($this->url . $html_a->href));
+                    if ($html_part) {
+                        $part = new Part();
+                        $part->setName($name);
+                        $part->setCar($car);
+                        $part->setType($type);
+                        $html_price_arr = $html_part->find('.product-price');
+                        if (!empty($html_price_arr)) {
+                            $price = $html_price_arr[0]->innertext();
+                        }
+                        $price = str_replace(' руб.', '', $price);
+                        $part->setPrice(floatval($price));
+                        $html_desc_arr = $html_part->find('.product-description dd');
+                        if (!empty($html_desc_arr)) {
+                            $desc = $html_desc_arr[0]->innertext();
+                            $part->setDescription($desc);
+                        }
+                        $this->em->persist($part);
+                        $this->em->flush();
                     }
-                    $price = str_replace(' руб.', '', $price);
-                    $part->setPrice(floatval($price));
-                    $html_desc_arr = $html_part->find('.product-description dd');
-                    if (!empty($html_desc_arr)) {
-                        $desc = $html_desc_arr[0]->innertext();
-                        $part->setDescription($desc);
-                    }
-                    $this->em->persist($part);
-                    $this->em->flush();
                 }
             }
         }
