@@ -19,3 +19,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Cars }
         public: true
+
+    sonata.admin.service_car:
+        class: App\Admin\ServiceCarAdmin
+        arguments: [~, App\Entity\ServiceCar, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: ServiceCars }
+        public: true
