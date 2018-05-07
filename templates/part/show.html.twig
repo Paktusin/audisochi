@@ -3,7 +3,7 @@
 {% block container %}
     <div class="row">
         <div class="col-12">
-            <h4 class="a-header arrow part-name">{{ part.name }}</h4>
+            <h4 class="arrow">{{ part.name }}</h4>
             {% if part.image | length > 0 %}
                 <img class="img-fluid col-12 col-sm-6 col-md-4 p-4 float-left" src="{{ part.image | image }}">
             {% endif %}
