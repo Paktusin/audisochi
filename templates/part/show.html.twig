@@ -2,12 +2,12 @@
 
 {% block container %}
     <div class="row">
-        <div class="col-12">
+        <div class="col-12"  data-admin="part" data-admin-id="{{ part.id }}">
             <h4 class="arrow">{{ part.name }}</h4>
             {% if part.image | length > 0 %}
                 <img class="img-fluid col-12 col-sm-6 col-md-4 p-4 float-left" src="{{ part.image | image }}">
             {% endif %}
-            <p>{{ part.description | raw }}</p>
+            <div class="desc mb-3 font-secondary">{{ part.description | raw }}</div>
             <p>{{ part.price }} руб.</p>
             <button class="btn btn-secondary text-white" onclick="basket.addPart({{ part.id }},this)">
                 Добавить в

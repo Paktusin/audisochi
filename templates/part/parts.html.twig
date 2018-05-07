@@ -4,7 +4,7 @@
     <div class="row">
         {% for part in parts %}
             <div class="col-12 col-sm-6 col-md-4 mb-4">
-                <a class="undec" href="{{ path('part_show',{id:part.id}) }}">
+                <a class="undec" href="{{ path('part_show',{id:part.id}) }}" data-admin="part" data-admin-id="{{ part.id }}">
                     <div class="a-card">
                         <div class="bg" style="background-image: url({{ part.image | image }})">
                         </div>

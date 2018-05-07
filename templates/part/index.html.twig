@@ -4,7 +4,7 @@
     <div class="row">
         {% for car in cars %}
             <div class="col-12 col-md-6 col-lg-4 mb-4">
-                <a class="undec" href="{{ path('part_types',{car_id:car.id}) }}">
+                <a class="undec" href="{{ path('part_types',{car_id:car.id}) }}"  data-admin="car" data-admin-id="{{ car.id }}">
                     <div class="a-card">
                         <div class="bg" style="background-image: url({{ car.image | image }})"></div>
                         <div class="a-body p-4">

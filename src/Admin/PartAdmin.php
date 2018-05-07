@@ -24,7 +24,11 @@ class PartAdmin extends Admin
             ->add('name')
             ->add('type')
             ->add('isActive')
-            ->add('description')
+            ->add('description', null, [
+                'attr' => [
+                    'class' => 'cke-editor'
+                ]
+            ])
             ->add('price')
             ->add('image', ImgurType::class);
     }
@@ -35,8 +39,7 @@ class PartAdmin extends Admin
             ->add('isActive')
             ->add('name')
             ->add('type')
-            ->add('price')
-        ;
+            ->add('price');
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -47,10 +50,9 @@ class PartAdmin extends Admin
             ->add('name')
             ->add('type')
             ->add('price')
-            ->add('image',null,[
-                'template'=>'image_field.html.twig'
-            ])
-        ;
+            ->add('image', null, [
+                'template' => 'image_field.html.twig'
+            ]);
         parent::configureListFields($listMapper);
     }
 }
