@@ -3,7 +3,7 @@
 {% block container %}
     <div class="row">
         {% for car in cars %}
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <a href="{{ path('part_types',{car_id:car.id}) }}">
                     <div class="a-card">
                         <div class="bg" style="background-image: url({{ car.image | image }})">
