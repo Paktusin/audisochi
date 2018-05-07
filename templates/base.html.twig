@@ -26,7 +26,7 @@
 {% block javascripts %}
 {% endblock %}
 {% if is_granted('ROLE_ADMIN') %}
-    <script src="{{ asset('/build/js/quick_admin.js') }}"></script>
+    <script src="{{ asset('build/js/quick_admin.js') }}"></script>
     <div id="q-admin-template" class="btn-group q-admin template">
         <a class="btn btn-warning edit" href=""><i class="fa fa-pencil"></i></a>
         <a class="btn btn-danger remove" href=""><i class="fa fa-trash"></i></a>
